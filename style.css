@@ -21,3 +21,32 @@ body {
 .seat.selected {
     background-color: green;
 }
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.row-label {
+    width: 20px;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.seat.occupied {
+    background-color: red;
+    cursor: not-allowed;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.legend .seat {
+    margin-right: 5px;
+}
+
