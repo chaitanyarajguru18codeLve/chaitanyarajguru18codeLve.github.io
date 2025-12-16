@@ -18,6 +18,24 @@ body {
     font-weight: bold;
 }
 
+.category-label {
+    width: 80px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.category-label.silver {
+    color: #666;
+}
+
+.category-label.gold {
+    color: goldenrod;
+}
+
+.category-label.recliner {
+    color: purple;
+}
+
 .seat {
     width: 40px;
     height: 40px;
