@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
     const seats = document.querySelectorAll(".seat");
     const count = document.getElementById("count");
     const total = document.getElementById("total");
@@ -41,12 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
     seats.forEach(seat => {
         seat.addEventListener("click", () => {
             if (seat.classList.contains("occupied")) return;
-
             seat.classList.toggle("selected");
 
             selectedSeats = [...document.querySelectorAll(".seat.selected")]
-                .map(seat => seat.dataset.seat);
-
+                .map(s => s.dataset.seat);
             updateSummary();
         });
     });
@@ -55,15 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
     time.addEventListener("change", loadSeatsForShow);
 
     confirmBtn.addEventListener("click", () => {
-        if (selectedSeats.length === 0) {
-            alert("Please select at least one seat.");
+        if (!selectedSeats.length) {
+            alert("Select at least one seat.");
             return;
         }
 
         const showKey = getShowKey();
-
         if (!allBookings[showKey]) allBookings[showKey] = [];
-
         selectedSeats.forEach(seat => {
             if (!allBookings[showKey].includes(seat)) {
                 allBookings[showKey].push(seat);
@@ -71,16 +66,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         localStorage.setItem("allBookings", JSON.stringify(allBookings));
-
         loadSeatsForShow();
-
-        message.innerText =
-            `Booking confirmed for ${movie.value} at ${time.value}`;
+        message.innerText = `Booking confirmed for ${movie.value} at ${time.value}`;
     });
 
     resetBtn.addEventListener("click", () => {
-        if (!confirm("Admin: Clear ALL bookings for ALL shows?")) return;
-
+        if (!confirm("Clear all bookings?")) return;
         localStorage.removeItem("allBookings");
         allBookings = {};
         loadSeatsForShow();
@@ -89,18 +80,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateSummary() {
         let totalPrice = 0;
-
         selectedSeats.forEach(seatId => {
-            const seat = document.querySelector(
-                `.seat[data-seat='${seatId}']`
-            );
-            totalPrice += seatPrices[seat.dataset.type];
+            const seat = document.querySelector(`[data-seat='${seatId}']`);
+            const type = seat.closest(".seat-row").dataset.type;
+            totalPrice += seatPrices[type];
         });
 
         count.innerText = selectedSeats.length;
         total.innerText = totalPrice;
-        seatList.innerText =
-            selectedSeats.length ? selectedSeats.join(", ") : "None";
+        seatList.innerText = selectedSeats.length ? selectedSeats.join(", ") : "None";
     }
 
     loadSeatsForShow();
