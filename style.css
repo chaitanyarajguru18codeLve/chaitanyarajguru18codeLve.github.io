@@ -51,7 +51,7 @@ body {
     color: white;
 }
 
-/* Legend seats must NEVER be clickable */
+/* Legend seats: visual only */
 .legend .seat {
     width: 20px;
     height: 20px;
@@ -70,6 +70,13 @@ button {
     font-size: 16px;
     margin-top: 15px;
     cursor: pointer;
+}
+
+/* Admin reset styling */
+#resetBtn {
+    background-color: darkred;
+    color: white;
+    margin-left: 10px;
 }
 
 #message {
