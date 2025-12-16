@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
     const seats = document.querySelectorAll(".seat:not(.occupied)");
     const count = document.getElementById("count");
@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const movieSelect = document.getElementById("movie");
     const timeSelect = document.getElementById("time");
 
-    let ticketPrice = +movieSelect.value;
+    let ticketPrice;
 
-    /* ---------------- RESTORE SAVED DATA ---------------- */
+    /* ---------- RESTORE DATA ---------- */
 
     const savedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
     const savedMovie = localStorage.getItem("selectedMovie");
@@ -17,12 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (savedMovie) {
         movieSelect.value = savedMovie;
-        ticketPrice = +savedMovie;
     }
 
     if (savedTime) {
         timeSelect.value = savedTime;
     }
+
+    ticketPrice = +movieSelect.value;
 
     seats.forEach(seat => {
         if (savedSeats.includes(seat.dataset.seat)) {
@@ -36,8 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /* ---------------- EVENT LISTENERS ---------------- */
-
     movieSelect.addEventListener("change", () => {
         ticketPrice = +movieSelect.value;
         localStorage.setItem("selectedMovie", movieSelect.value);
@@ -48,21 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("selectedTime", timeSelect.value);
     });
 
-    /* ---------------- FUNCTIONS ---------------- */
-
     function saveSeats() {
-        const selectedSeats = document.querySelectorAll(".seat.selected");
-        const seatIds = [...selectedSeats].map(seat => seat.dataset.seat);
-        localStorage.setItem("selectedSeats", JSON.stringify(seatIds));
+        const selected = document.querySelectorAll(".seat.selected");
+        const ids = [...selected].map(seat => seat.dataset.seat);
+        localStorage.setItem("selectedSeats", JSON.stringify(ids));
     }
 
     function updateSummary() {
-        const selectedSeats = document.querySelectorAll(".seat.selected");
-        count.innerText = selectedSeats.length;
-        total.innerText = selectedSeats.length * ticketPrice;
+        const selected = document.querySelectorAll(".seat.selected");
+        count.innerText = selected.length;
+        total.innerText = selected.length * ticketPrice;
 
-        const seatNames = [...selectedSeats].map(seat => seat.dataset.seat);
-        seatList.innerText = seatNames.length ? seatNames.join(", ") : "None";
+        const names = [...selected].map(seat => seat.dataset.seat);
+        seatList.innerText = names.length ? names.join(", ") : "None";
     }
 
     updateSummary();
