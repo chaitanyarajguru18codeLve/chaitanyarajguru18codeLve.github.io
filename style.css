@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     text-align: center;
 }
 
@@ -7,33 +7,22 @@ body {
     margin: 20px;
 }
 
-.controls label {
-    margin: 0 15px;
-    font-weight: bold;
-}
-
-.theater {
-    margin-top: 20px;
-}
-
 .row {
     display: flex;
-    align-items: center;
     justify-content: center;
     margin: 10px 0;
 }
 
 .row-label {
     width: 20px;
-    margin-right: 10px;
     font-weight: bold;
 }
 
 .seat {
-    width: 45px;
-    height: 45px;
-    background-color: lightgray;
+    width: 40px;
+    height: 40px;
     margin: 5px;
+    background: lightgray;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -41,46 +30,35 @@ body {
 }
 
 .seat.selected {
-    background-color: green;
+    background: green;
     color: white;
 }
 
 .seat.occupied {
-    background-color: red;
+    background: red;
     cursor: not-allowed;
     color: white;
-}
-
-/* Legend seats: visual only */
-.legend .seat {
-    width: 20px;
-    height: 20px;
-    pointer-events: none;
 }
 
 .legend {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.legend .seat {
+    pointer-events: none;
+    width: 20px;
+    height: 20px;
 }
 
 button {
     padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 15px;
-    cursor: pointer;
+    margin: 10px;
 }
 
-/* Admin reset styling */
 #resetBtn {
     background-color: darkred;
     color: white;
-    margin-left: 10px;
-}
-
-#message {
-    margin-top: 15px;
-    font-weight: bold;
-    color: green;
 }
