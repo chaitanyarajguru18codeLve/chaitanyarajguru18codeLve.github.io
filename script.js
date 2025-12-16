@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let bookedSeats = JSON.parse(localStorage.getItem("bookedSeats")) || [];
     let selectedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
 
-    // Initialize theater seats only
     seats.forEach(seat => {
 
         if (bookedSeats.includes(seat.dataset.seat)) {
@@ -51,15 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         selectedSeats.forEach(id => {
-
-            if (!bookedSeats.includes(id)) {
-                bookedSeats.push(id);
-            }
+            if (!bookedSeats.includes(id)) bookedSeats.push(id);
 
             const seat = document.querySelector(
                 `.theater .seat[data-seat='${id}']`
             );
-
             seat.classList.remove("selected");
             seat.classList.add("occupied");
         });
@@ -70,42 +65,33 @@ document.addEventListener("DOMContentLoaded", () => {
         selectedSeats = [];
         updateSummary();
 
-        message.innerText =
-            `Booking confirmed for ${movie.options[movie.selectedIndex].text} at ${time.value}`;
+        message.innerText = "Booking confirmed.";
     });
 
     resetBtn.addEventListener("click", () => {
-
         if (!confirm("Admin: Clear all bookings?")) return;
 
         localStorage.clear();
-
-        seats.forEach(seat => {
-            seat.classList.remove("selected", "occupied");
-        });
+        seats.forEach(seat => seat.classList.remove("selected", "occupied"));
 
         selectedSeats = [];
         bookedSeats = [];
-
         updateSummary();
-        message.innerText = "All bookings reset.";
     });
 
     function saveSelectedSeats() {
         selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
             .map(seat => seat.dataset.seat);
-
         localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
     }
 
     function updateSummary() {
         const selected = document.querySelectorAll(".theater .seat.selected");
-
         count.innerText = selected.length;
         total.innerText = selected.length * ticketPrice;
-
-        const names = [...selected].map(seat => seat.dataset.seat);
-        seatList.innerText = names.length ? names.join(", ") : "None";
+        seatList.innerText = selected.length
+            ? [...selected].map(s => s.dataset.seat).join(", ")
+            : "None";
     }
 
     updateSummary();
