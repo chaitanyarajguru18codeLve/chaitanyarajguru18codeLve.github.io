@@ -12,76 +12,40 @@ body {
     min-width: 300px;
 }
 
+/* Row styling */
 .row {
-    display: flex;
-    align-items: flex-start;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .row-label {
-    width: 20px;
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.row-seats {
+.seats-container {
     display: flex;
-    align-items: center;
     gap: 10px;
-    flex-wrap: wrap;
 }
 
-.category-label {
-    width: 80px;
-    font-weight: bold;
-    text-align: left;
-}
-
-.category-label.silver {
-    color: #666;
-}
-
-.category-label.gold {
-    color: goldenrod;
-}
-
-.category-label.recliner {
-    color: purple;
-}
-
+/* Seat categories */
 .seat {
     width: 40px;
     height: 40px;
     background-color: lightgray;
-    margin: 5px;
-    cursor: pointer;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
-.seat.selected {
-    background-color: green;
-    color: white;
-}
+.seat.silver { border: 2px solid #999; }
+.seat.gold { border: 2px solid gold; }
+.seat.recliner { border: 2px solid purple; }
 
-.seat.occupied {
-    background-color: red;
-    cursor: not-allowed;
-    color: white;
-}
-
-/* Seat categories */
-.seat.silver {
-    border: 2px solid #999;
-}
-
-.seat.gold {
-    border: 2px solid gold;
-}
-
-.seat.recliner {
-    border: 2px solid purple;
-}
+.seat.selected { background-color: green; color: white; }
+.seat.occupied { background-color: red; color: white; cursor: not-allowed; }
 
 /* Legend */
 .legend {
@@ -98,21 +62,10 @@ body {
     background-color: lightgray;
 }
 
-.legend-seat.silver {
-    border: 2px solid #999;
-}
-
-.legend-seat.gold {
-    border: 2px solid gold;
-}
-
-.legend-seat.recliner {
-    border: 2px solid purple;
-}
-
-.legend-seat.occupied {
-    background-color: red;
-}
+.legend-seat.silver { border: 2px solid #999; }
+.legend-seat.gold { border: 2px solid gold; }
+.legend-seat.recliner { border: 2px solid purple; }
+.legend-seat.occupied { background-color: red; }
 
 button {
     padding: 10px 20px;
