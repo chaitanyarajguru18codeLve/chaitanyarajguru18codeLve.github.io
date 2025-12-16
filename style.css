@@ -63,3 +63,6 @@ body {
     width: 20px;
     height: 20px;
 }
+.legend .seat {
+    pointer-events: none;
+}
