@@ -12,9 +12,9 @@
     <label>
         Movie:
         <select id="movie">
-            <option value="150">Avengers</option>
-            <option value="180">Inception</option>
-            <option value="200">Interstellar</option>
+            <option value="Avengers">Avengers</option>
+            <option value="Inception">Inception</option>
+            <option value="Interstellar">Interstellar</option>
         </select>
     </label>
 
@@ -29,10 +29,11 @@
     </label>
 </div>
 
-<!-- Legend (visual only) -->
+<!-- Legend (VISUAL ONLY – NOT CLICKABLE) -->
 <div class="legend">
-    <span class="legend-seat available"></span> Available
-    <span class="legend-seat selected"></span> Selected
+    <span class="legend-seat silver"></span> Silver ₹150
+    <span class="legend-seat gold"></span> Gold ₹200
+    <span class="legend-seat recliner"></span> Recliner ₹300
     <span class="legend-seat occupied"></span> Occupied
 </div>
 
@@ -40,18 +41,24 @@
 <div class="theater">
     <div class="row">
         <span class="row-label">A</span>
-        <div class="seat" data-seat="A1">1</div>
-        <div class="seat" data-seat="A2">2</div>
-        <div class="seat" data-seat="A3">3</div>
-        <div class="seat" data-seat="A4">4</div>
+        <div class="seat silver" data-seat="A1" data-type="silver">1</div>
+        <div class="seat silver" data-seat="A2" data-type="silver">2</div>
+        <div class="seat silver" data-seat="A3" data-type="silver">3</div>
+        <div class="seat silver" data-seat="A4" data-type="silver">4</div>
     </div>
 
     <div class="row">
         <span class="row-label">B</span>
-        <div class="seat" data-seat="B1">1</div>
-        <div class="seat" data-seat="B2">2</div>
-        <div class="seat" data-seat="B3">3</div>
-        <div class="seat" data-seat="B4">4</div>
+        <div class="seat gold" data-seat="B1" data-type="gold">1</div>
+        <div class="seat gold" data-seat="B2" data-type="gold">2</div>
+        <div class="seat gold" data-seat="B3" data-type="gold">3</div>
+        <div class="seat gold" data-seat="B4" data-type="gold">4</div>
+    </div>
+
+    <div class="row">
+        <span class="row-label">C</span>
+        <div class="seat recliner" data-seat="C1" data-type="recliner">1</div>
+        <div class="seat recliner" data-seat="C2" data-type="recliner">2</div>
     </div>
 </div>
 
