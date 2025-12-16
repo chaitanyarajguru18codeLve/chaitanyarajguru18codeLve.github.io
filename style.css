@@ -7,47 +7,6 @@ body {
     margin: 20px;
 }
 
-.theater {
-    display: inline-block;
-    min-width: 300px;
-}
-
-/* Row styling */
-.row {
-    margin: 15px 0;
-}
-
-.row-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.seats-container {
-    display: flex;
-    gap: 10px;
-}
-
-/* Seat categories */
-.seat {
-    width: 40px;
-    height: 40px;
-    background-color: lightgray;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.seat.silver { border: 2px solid #999; }
-.seat.gold { border: 2px solid gold; }
-.seat.recliner { border: 2px solid purple; }
-
-.seat.selected { background-color: green; color: white; }
-.seat.occupied { background-color: red; color: white; cursor: not-allowed; }
-
-/* Legend */
 .legend {
     display: flex;
     justify-content: center;
@@ -67,12 +26,45 @@ body {
 .legend-seat.recliner { border: 2px solid purple; }
 .legend-seat.occupied { background-color: red; }
 
+.theater {
+    display: grid;
+    grid-gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.seat-row span {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.seats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 40px);
+    grid-gap: 10px;
+    justify-content: center;
+}
+
+.seat {
+    width: 40px;
+    height: 40px;
+    background-color: lightgray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid #999;
+}
+
+.seat-row[data-type="gold"] .seat { border-color: gold; }
+.seat-row[data-type="recliner"] .seat { border-color: purple; }
+
+.seat.selected { background-color: green; color: white; }
+.seat.occupied { background-color: red; color: white; cursor: not-allowed; }
+
 button {
     padding: 10px 20px;
     margin: 10px;
-}
-
-#resetBtn {
-    background-color: darkred;
-    color: white;
 }
