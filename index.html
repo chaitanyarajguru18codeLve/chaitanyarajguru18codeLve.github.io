@@ -29,7 +29,7 @@
     </label>
 </div>
 
-<!-- Legend (VISUAL ONLY – NOT CLICKABLE) -->
+<!-- Legend -->
 <div class="legend">
     <span class="legend-seat silver"></span> Silver ₹150
     <span class="legend-seat gold"></span> Gold ₹200
@@ -37,10 +37,11 @@
     <span class="legend-seat occupied"></span> Occupied
 </div>
 
-<!-- Theater -->
+<!-- Theater with category labels -->
 <div class="theater">
     <div class="row">
         <span class="row-label">A</span>
+        <span class="category-label silver">Silver</span>
         <div class="seat silver" data-seat="A1" data-type="silver">1</div>
         <div class="seat silver" data-seat="A2" data-type="silver">2</div>
         <div class="seat silver" data-seat="A3" data-type="silver">3</div>
@@ -49,28 +50,11 @@
 
     <div class="row">
         <span class="row-label">B</span>
+        <span class="category-label gold">Gold</span>
         <div class="seat gold" data-seat="B1" data-type="gold">1</div>
         <div class="seat gold" data-seat="B2" data-type="gold">2</div>
         <div class="seat gold" data-seat="B3" data-type="gold">3</div>
         <div class="seat gold" data-seat="B4" data-type="gold">4</div>
     </div>
 
-    <div class="row">
-        <span class="row-label">C</span>
-        <div class="seat recliner" data-seat="C1" data-type="recliner">1</div>
-        <div class="seat recliner" data-seat="C2" data-type="recliner">2</div>
-    </div>
-</div>
-
-<p>Selected Seat Count: <span id="count">0</span></p>
-<p>Total Price: ₹<span id="total">0</span></p>
-<p>Selected Seats: <span id="seatList">None</span></p>
-
-<button id="confirmBtn">Confirm Booking</button>
-<button id="resetBtn">Admin Reset (All Shows)</button>
-
-<p id="message"></p>
-
-<script src="script.js"></script>
-</body>
-</html>
+    <div class="r
