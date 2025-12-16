@@ -1,4 +1,4 @@
-const seats = document.querySelectorAll('.seat');
+const seats = document.querySelectorAll('.seat:not(.occupied)');
 const count = document.getElementById('count');
 const total = document.getElementById('total');
 
@@ -7,11 +7,11 @@ let ticketPrice = 150;
 seats.forEach(seat => {
     seat.addEventListener('click', () => {
         seat.classList.toggle('selected');
-        updateCount();
+        updateSummary();
     });
 });
 
-function updateCount() {
+function updateSummary() {
     const selectedSeats = document.querySelectorAll('.seat.selected');
     count.innerText = selectedSeats.length;
     total.innerText = selectedSeats.length * ticketPrice;
