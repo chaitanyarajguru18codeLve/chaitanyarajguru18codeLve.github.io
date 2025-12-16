@@ -15,34 +15,36 @@
 </div>
 
 <div class="theater">
+
     <div class="row">
         <span class="row-label">A</span>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
+        <div class="seat" data-seat="A1">1</div>
+        <div class="seat occupied" data-seat="A2">2</div>
+        <div class="seat" data-seat="A3">3</div>
+        <div class="seat" data-seat="A4">4</div>
     </div>
 
     <div class="row">
         <span class="row-label">B</span>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat occupied"></div>
-        <div class="seat"></div>
+        <div class="seat" data-seat="B1">1</div>
+        <div class="seat" data-seat="B2">2</div>
+        <div class="seat occupied" data-seat="B3">3</div>
+        <div class="seat" data-seat="B4">4</div>
     </div>
 
     <div class="row">
         <span class="row-label">C</span>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
-        <div class="seat"></div>
+        <div class="seat" data-seat="C1">1</div>
+        <div class="seat" data-seat="C2">2</div>
+        <div class="seat" data-seat="C3">3</div>
+        <div class="seat" data-seat="C4">4</div>
     </div>
+
 </div>
 
-
-<p>Selected Seats: <span id="count">0</span></p>
+<p>Selected Seats Count: <span id="count">0</span></p>
 <p>Total Price: ₹<span id="total">0</span></p>
+<p>Selected Seats: <span id="seatList">None</span></p>
 
 <script src="script.js"></script>
 </body>
