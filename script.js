@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const seats = document.querySelectorAll(".theater .seat");
+    const seats = document.querySelectorAll(".seat");
     const count = document.getElementById("count");
     const total = document.getElementById("total");
     const seatList = document.getElementById("seatList");
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             seat.classList.toggle("selected");
 
-            selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
+            selectedSeats = [...document.querySelectorAll(".seat.selected")]
                 .map(seat => seat.dataset.seat);
 
             updateSummary();
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         selectedSeats.forEach(seatId => {
             const seat = document.querySelector(
-                `.theater .seat[data-seat='${seatId}']`
+                `.seat[data-seat='${seatId}']`
             );
             totalPrice += seatPrices[seat.dataset.type];
         });
