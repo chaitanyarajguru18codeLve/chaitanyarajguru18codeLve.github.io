@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     time.addEventListener("change", loadSeatsForShow);
 
     confirmBtn.addEventListener("click", () => {
-
         if (selectedSeats.length === 0) {
             alert("Please select at least one seat.");
             return;
@@ -63,9 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const showKey = getShowKey();
 
-        if (!allBookings[showKey]) {
-            allBookings[showKey] = [];
-        }
+        if (!allBookings[showKey]) allBookings[showKey] = [];
 
         selectedSeats.forEach(seat => {
             if (!allBookings[showKey].includes(seat)) {
