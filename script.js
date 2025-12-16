@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let bookedSeats = JSON.parse(localStorage.getItem("bookedSeats")) || [];
     let selectedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
 
-    // Restore booked & selected seats
+    // Initialize theater seats only
     seats.forEach(seat => {
 
         if (bookedSeats.includes(seat.dataset.seat)) {
@@ -46,11 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
     confirmBtn.addEventListener("click", () => {
 
         if (selectedSeats.length === 0) {
-            alert("Please select at least one seat");
+            alert("Please select at least one seat.");
             return;
         }
 
         selectedSeats.forEach(id => {
+
             if (!bookedSeats.includes(id)) {
                 bookedSeats.push(id);
             }
@@ -91,19 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function saveSelectedSeats() {
-        selectedSeats = [...document.querySelectorAll(".seat.selected")]
+        selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
             .map(seat => seat.dataset.seat);
 
         localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
     }
 
     function updateSummary() {
-        const selected = document.querySelectorAll(".seat.selected");
+        const selected = document.querySelectorAll(".theater .seat.selected");
 
         count.innerText = selected.length;
         total.innerText = selected.length * ticketPrice;
 
-        const names = [...selected].map(s => s.dataset.seat);
+        const names = [...selected].map(seat => seat.dataset.seat);
         seatList.innerText = names.length ? names.join(", ") : "None";
     }
 
