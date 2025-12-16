@@ -8,12 +8,38 @@
 
 <h1>Theater Seat Booking</h1>
 
-<div class="theater">
-    <div class="seat"></div>
-    <div class="seat"></div>
-    <div class="seat"></div>
-    <div class="seat"></div>
+<div class="legend">
+    <span class="seat"></span> Available
+    <span class="seat selected"></span> Selected
+    <span class="seat occupied"></span> Occupied
 </div>
+
+<div class="theater">
+    <div class="row">
+        <span class="row-label">A</span>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+    </div>
+
+    <div class="row">
+        <span class="row-label">B</span>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat occupied"></div>
+        <div class="seat"></div>
+    </div>
+
+    <div class="row">
+        <span class="row-label">C</span>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+        <div class="seat"></div>
+    </div>
+</div>
+
 
 <p>Selected Seats: <span id="count">0</span></p>
 <p>Total Price: ₹<span id="total">0</span></p>
