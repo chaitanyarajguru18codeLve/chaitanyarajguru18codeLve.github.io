@@ -38,7 +38,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
 }
 
 .seat.selected {
@@ -52,7 +51,7 @@ body {
     color: white;
 }
 
-/* Legend seats are visual only, not clickable */
+/* Legend seats must NEVER be clickable */
 .legend .seat {
     width: 20px;
     height: 20px;
