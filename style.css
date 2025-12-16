@@ -36,11 +36,11 @@ body {
 
 .seat.occupied {
     background-color: red;
-    color: white;
     cursor: not-allowed;
+    color: white;
 }
 
-/* Legend only */
+/* ✅ LEGEND SEATS */
 .legend {
     display: flex;
     justify-content: center;
@@ -48,10 +48,22 @@ body {
     margin-bottom: 15px;
 }
 
-.legend .seat {
+.legend-seat {
     width: 20px;
     height: 20px;
-    pointer-events: none;
+    display: inline-block;
+}
+
+.legend-seat.available {
+    background-color: lightgray;
+}
+
+.legend-seat.selected {
+    background-color: green;
+}
+
+.legend-seat.occupied {
+    background-color: red;
 }
 
 button {
