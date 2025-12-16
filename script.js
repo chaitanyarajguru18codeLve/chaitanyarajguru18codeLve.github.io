@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const movieSelect = document.getElementById("movie");
     const timeSelect = document.getElementById("time");
     const confirmBtn = document.getElementById("confirmBtn");
+    const resetBtn = document.getElementById("resetBtn");
     const message = document.getElementById("message");
 
     let ticketPrice = +movieSelect.value;
@@ -81,6 +82,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         message.innerText =
             `Booking confirmed for ${movieSelect.options[movieSelect.selectedIndex].text} at ${timeSelect.value}`;
+    });
+
+    /* ---------- ADMIN RESET ---------- */
+    resetBtn.addEventListener("click", () => {
+
+        const confirmReset = confirm(
+            "Admin Action: This will clear ALL bookings. Continue?"
+        );
+
+        if (!confirmReset) return;
+
+        localStorage.clear();
+
+        seats.forEach(seat => {
+            seat.classList.remove("selected", "occupied");
+        });
+
+        selectedSeats = [];
+        bookedSeats = [];
+
+        updateSummary();
+        message.innerText = "All bookings have been reset by admin.";
     });
 
     function saveSelectedSeats() {
