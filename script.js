@@ -1,29 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     const seats = document.querySelectorAll(".theater .seat");
     const count = document.getElementById("count");
     const total = document.getElementById("total");
     const seatList = document.getElementById("seatList");
-    const movieSelect = document.getElementById("movie");
-    const timeSelect = document.getElementById("time");
+    const movie = document.getElementById("movie");
+    const time = document.getElementById("time");
     const confirmBtn = document.getElementById("confirmBtn");
     const resetBtn = document.getElementById("resetBtn");
     const message = document.getElementById("message");
 
-    let ticketPrice = +movieSelect.value;
+    let ticketPrice = +movie.value;
 
     let bookedSeats = JSON.parse(localStorage.getItem("bookedSeats")) || [];
     let selectedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
 
-    const savedMovie = localStorage.getItem("selectedMovie");
-    const savedTime = localStorage.getItem("selectedTime");
-
-    if (savedMovie) movieSelect.value = savedMovie;
-    if (savedTime) timeSelect.value = savedTime;
-
-    ticketPrice = +movieSelect.value;
-
-    // Initialize seats
+    // Restore booked & selected seats
     seats.forEach(seat => {
 
         if (bookedSeats.includes(seat.dataset.seat)) {
@@ -46,32 +38,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    movieSelect.addEventListener("change", () => {
-        ticketPrice = +movieSelect.value;
-        localStorage.setItem("selectedMovie", movieSelect.value);
+    movie.addEventListener("change", () => {
+        ticketPrice = +movie.value;
         updateSummary();
     });
 
-    timeSelect.addEventListener("change", () => {
-        localStorage.setItem("selectedTime", timeSelect.value);
-    });
-
     confirmBtn.addEventListener("click", () => {
+
         if (selectedSeats.length === 0) {
-            alert("Please select at least one seat.");
+            alert("Please select at least one seat");
             return;
         }
 
-        selectedSeats.forEach(seatId => {
-            bookedSeats.push(seatId);
+        selectedSeats.forEach(id => {
+            if (!bookedSeats.includes(id)) {
+                bookedSeats.push(id);
+            }
 
             const seat = document.querySelector(
-                `.theater .seat[data-seat='${seatId}']`
+                `.theater .seat[data-seat='${id}']`
             );
 
             seat.classList.remove("selected");
             seat.classList.add("occupied");
-            seat.replaceWith(seat.cloneNode(true));
         });
 
         localStorage.setItem("bookedSeats", JSON.stringify(bookedSeats));
@@ -81,17 +70,12 @@ document.addEventListener("DOMContentLoaded", function () {
         updateSummary();
 
         message.innerText =
-            `Booking confirmed for ${movieSelect.options[movieSelect.selectedIndex].text} at ${timeSelect.value}`;
+            `Booking confirmed for ${movie.options[movie.selectedIndex].text} at ${time.value}`;
     });
 
-    /* ---------- ADMIN RESET ---------- */
     resetBtn.addEventListener("click", () => {
 
-        const confirmReset = confirm(
-            "Admin Action: This will clear ALL bookings. Continue?"
-        );
-
-        if (!confirmReset) return;
+        if (!confirm("Admin: Clear all bookings?")) return;
 
         localStorage.clear();
 
@@ -103,23 +87,23 @@ document.addEventListener("DOMContentLoaded", function () {
         bookedSeats = [];
 
         updateSummary();
-        message.innerText = "All bookings have been reset by admin.";
+        message.innerText = "All bookings reset.";
     });
 
     function saveSelectedSeats() {
-        selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
+        selectedSeats = [...document.querySelectorAll(".seat.selected")]
             .map(seat => seat.dataset.seat);
 
         localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
     }
 
     function updateSummary() {
-        const selected = document.querySelectorAll(".theater .seat.selected");
+        const selected = document.querySelectorAll(".seat.selected");
 
         count.innerText = selected.length;
         total.innerText = selected.length * ticketPrice;
 
-        const names = [...selected].map(seat => seat.dataset.seat);
+        const names = [...selected].map(s => s.dataset.seat);
         seatList.innerText = names.length ? names.join(", ") : "None";
     }
 
