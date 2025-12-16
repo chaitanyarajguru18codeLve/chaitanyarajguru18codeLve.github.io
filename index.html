@@ -29,7 +29,6 @@
     </label>
 </div>
 
-<!-- Legend -->
 <div class="legend">
     <span class="legend-seat silver"></span> Silver ₹150
     <span class="legend-seat gold"></span> Gold ₹200
@@ -37,36 +36,35 @@
     <span class="legend-seat occupied"></span> Occupied
 </div>
 
-<!-- Theater -->
 <div class="theater">
-    <!-- Silver row -->
-    <div class="row">
-        <span class="row-label">A - Silver</span>
-        <div class="seats-container">
-            <div class="seat silver" data-seat="A1" data-type="silver">1</div>
-            <div class="seat silver" data-seat="A2" data-type="silver">2</div>
-            <div class="seat silver" data-seat="A3" data-type="silver">3</div>
-            <div class="seat silver" data-seat="A4" data-type="silver">4</div>
+    <!-- Silver Seats -->
+    <div class="seat-row" data-type="silver">
+        <span>A - Silver</span>
+        <div class="seats-grid">
+            <div class="seat" data-seat="A1">1</div>
+            <div class="seat" data-seat="A2">2</div>
+            <div class="seat" data-seat="A3">3</div>
+            <div class="seat" data-seat="A4">4</div>
         </div>
     </div>
 
-    <!-- Gold row -->
-    <div class="row">
-        <span class="row-label">B - Gold</span>
-        <div class="seats-container">
-            <div class="seat gold" data-seat="B1" data-type="gold">1</div>
-            <div class="seat gold" data-seat="B2" data-type="gold">2</div>
-            <div class="seat gold" data-seat="B3" data-type="gold">3</div>
-            <div class="seat gold" data-seat="B4" data-type="gold">4</div>
+    <!-- Gold Seats -->
+    <div class="seat-row" data-type="gold">
+        <span>B - Gold</span>
+        <div class="seats-grid">
+            <div class="seat" data-seat="B1">1</div>
+            <div class="seat" data-seat="B2">2</div>
+            <div class="seat" data-seat="B3">3</div>
+            <div class="seat" data-seat="B4">4</div>
         </div>
     </div>
 
-    <!-- Recliner row -->
-    <div class="row">
-        <span class="row-label">C - Recliner</span>
-        <div class="seats-container">
-            <div class="seat recliner" data-seat="C1" data-type="recliner">1</div>
-            <div class="seat recliner" data-seat="C2" data-type="recliner">2</div>
+    <!-- Recliner Seats -->
+    <div class="seat-row" data-type="recliner">
+        <span>C - Recliner</span>
+        <div class="seats-grid">
+            <div class="seat" data-seat="C1">1</div>
+            <div class="seat" data-seat="C2">2</div>
         </div>
     </div>
 </div>
@@ -76,7 +74,7 @@
 <p>Selected Seats: <span id="seatList">None</span></p>
 
 <button id="confirmBtn">Confirm Booking</button>
-<button id="resetBtn">Admin Reset (All Shows)</button>
+<button id="resetBtn">Reset All</button>
 
 <p id="message"></p>
 
