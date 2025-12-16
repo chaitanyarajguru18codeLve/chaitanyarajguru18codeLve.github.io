@@ -52,7 +52,7 @@ body {
     color: white;
 }
 
-/* Legend seats are not clickable */
+/* Legend seats are visual only, not clickable */
 .legend .seat {
     width: 20px;
     height: 20px;
