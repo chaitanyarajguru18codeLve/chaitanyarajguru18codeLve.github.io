@@ -1,5 +1,5 @@
 body {
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     text-align: center;
 }
 
@@ -21,8 +21,8 @@ body {
 .seat {
     width: 40px;
     height: 40px;
+    background-color: lightgray;
     margin: 5px;
-    background: lightgray;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -30,16 +30,17 @@ body {
 }
 
 .seat.selected {
-    background: green;
+    background-color: green;
     color: white;
 }
 
 .seat.occupied {
-    background: red;
-    cursor: not-allowed;
+    background-color: red;
     color: white;
+    cursor: not-allowed;
 }
 
+/* Legend only */
 .legend {
     display: flex;
     justify-content: center;
@@ -48,9 +49,9 @@ body {
 }
 
 .legend .seat {
-    pointer-events: none;
     width: 20px;
     height: 20px;
+    pointer-events: none;
 }
 
 button {
