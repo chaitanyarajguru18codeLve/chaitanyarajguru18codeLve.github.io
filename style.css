@@ -7,15 +7,27 @@ body {
     margin: 20px;
 }
 
+.theater {
+    display: inline-block;
+    min-width: 300px;
+}
+
 .row {
     display: flex;
-    justify-content: center;
+    align-items: flex-start;
     margin: 10px 0;
 }
 
 .row-label {
     width: 20px;
     font-weight: bold;
+}
+
+.row-seats {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .category-label {
