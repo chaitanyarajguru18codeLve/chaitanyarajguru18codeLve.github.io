@@ -10,9 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const resetBtn = document.getElementById("resetBtn");
     const message = document.getElementById("message");
 
-    let ticketPrice = +movie.value;
-    let selectedSeats = [];
+    const seatPrices = {
+        silver: 150,
+        gold: 200,
+        recliner: 300
+    };
 
+    let selectedSeats = [];
     let allBookings = JSON.parse(localStorage.getItem("allBookings")) || {};
 
     function getShowKey() {
@@ -25,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         seats.forEach(seat => {
             seat.classList.remove("selected", "occupied");
-
             if (bookedSeats.includes(seat.dataset.seat)) {
                 seat.classList.add("occupied");
             }
@@ -48,11 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    movie.addEventListener("change", () => {
-        ticketPrice = +movie.value;
-        loadSeatsForShow();
-    });
-
+    movie.addEventListener("change", loadSeatsForShow);
     time.addEventListener("change", loadSeatsForShow);
 
     confirmBtn.addEventListener("click", () => {
@@ -79,24 +78,32 @@ document.addEventListener("DOMContentLoaded", () => {
         loadSeatsForShow();
 
         message.innerText =
-            `Booking confirmed for ${movie.options[movie.selectedIndex].text} at ${time.value}`;
+            `Booking confirmed for ${movie.value} at ${time.value}`;
     });
 
     resetBtn.addEventListener("click", () => {
-
         if (!confirm("Admin: Clear ALL bookings for ALL shows?")) return;
 
         localStorage.removeItem("allBookings");
         allBookings = {};
-
         loadSeatsForShow();
-        message.innerText = "All bookings cleared for all shows.";
+        message.innerText = "All bookings cleared.";
     });
 
     function updateSummary() {
+        let totalPrice = 0;
+
+        selectedSeats.forEach(seatId => {
+            const seat = document.querySelector(
+                `.theater .seat[data-seat='${seatId}']`
+            );
+            totalPrice += seatPrices[seat.dataset.type];
+        });
+
         count.innerText = selectedSeats.length;
-        total.innerText = selectedSeats.length * ticketPrice;
-        seatList.innerText = selectedSeats.length ? selectedSeats.join(", ") : "None";
+        total.innerText = totalPrice;
+        seatList.innerText =
+            selectedSeats.length ? selectedSeats.join(", ") : "None";
     }
 
     loadSeatsForShow();
