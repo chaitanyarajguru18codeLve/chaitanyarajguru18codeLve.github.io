@@ -52,6 +52,13 @@ body {
     color: white;
 }
 
+/* Legend seats are not clickable */
+.legend .seat {
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
 .legend {
     display: flex;
     justify-content: center;
@@ -59,10 +66,15 @@ body {
     margin-bottom: 20px;
 }
 
-.legend .seat {
-    width: 20px;
-    height: 20px;
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
 }
-.legend .seat {
-    pointer-events: none;
+
+#message {
+    margin-top: 15px;
+    font-weight: bold;
+    color: green;
 }
