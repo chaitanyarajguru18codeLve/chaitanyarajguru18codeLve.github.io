@@ -8,12 +8,36 @@
 
 <h1>Theater Seat Booking</h1>
 
+<!-- Movie & Time Selection -->
+<div class="controls">
+    <label>
+        Select Movie:
+        <select id="movie">
+            <option value="150">Avengers (₹150)</option>
+            <option value="180">Inception (₹180)</option>
+            <option value="200">Interstellar (₹200)</option>
+        </select>
+    </label>
+
+    <label>
+        Show Time:
+        <select id="time">
+            <option>10:00 AM</option>
+            <option>2:00 PM</option>
+            <option>6:00 PM</option>
+            <option>9:30 PM</option>
+        </select>
+    </label>
+</div>
+
+<!-- Seat Legend -->
 <div class="legend">
     <span class="seat"></span> Available
     <span class="seat selected"></span> Selected
     <span class="seat occupied"></span> Occupied
 </div>
 
+<!-- Theater Seats -->
 <div class="theater">
 
     <div class="row">
@@ -42,6 +66,7 @@
 
 </div>
 
+<!-- Booking Summary -->
 <p>Selected Seats Count: <span id="count">0</span></p>
 <p>Total Price: ₹<span id="total">0</span></p>
 <p>Selected Seats: <span id="seatList">None</span></p>
