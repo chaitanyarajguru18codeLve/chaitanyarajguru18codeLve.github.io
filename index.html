@@ -39,10 +39,10 @@
 
 <!-- Theater -->
 <div class="theater">
+    <!-- Silver row -->
     <div class="row">
-        <span class="row-label">A</span>
-        <div class="row-seats">
-            <span class="category-label silver">Silver</span>
+        <span class="row-label">A - Silver</span>
+        <div class="seats-container">
             <div class="seat silver" data-seat="A1" data-type="silver">1</div>
             <div class="seat silver" data-seat="A2" data-type="silver">2</div>
             <div class="seat silver" data-seat="A3" data-type="silver">3</div>
@@ -50,9 +50,36 @@
         </div>
     </div>
 
+    <!-- Gold row -->
     <div class="row">
-        <span class="row-label">B</span>
-        <div class="row-seats">
-            <span class="category-label gold">Gold</span>
+        <span class="row-label">B - Gold</span>
+        <div class="seats-container">
             <div class="seat gold" data-seat="B1" data-type="gold">1</div>
-            <div clas
+            <div class="seat gold" data-seat="B2" data-type="gold">2</div>
+            <div class="seat gold" data-seat="B3" data-type="gold">3</div>
+            <div class="seat gold" data-seat="B4" data-type="gold">4</div>
+        </div>
+    </div>
+
+    <!-- Recliner row -->
+    <div class="row">
+        <span class="row-label">C - Recliner</span>
+        <div class="seats-container">
+            <div class="seat recliner" data-seat="C1" data-type="recliner">1</div>
+            <div class="seat recliner" data-seat="C2" data-type="recliner">2</div>
+        </div>
+    </div>
+</div>
+
+<p>Selected Seat Count: <span id="count">0</span></p>
+<p>Total Price: ₹<span id="total">0</span></p>
+<p>Selected Seats: <span id="seatList">None</span></p>
+
+<button id="confirmBtn">Confirm Booking</button>
+<button id="resetBtn">Admin Reset (All Shows)</button>
+
+<p id="message"></p>
+
+<script src="script.js"></script>
+</body>
+</html>
