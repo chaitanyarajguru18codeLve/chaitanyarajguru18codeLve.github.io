@@ -1,0 +1,23 @@
+body {
+    font-family: Arial;
+    text-align: center;
+}
+
+.theater {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px;
+}
+
+.seat {
+    width: 50px;
+    height: 50px;
+    background-color: lightgray;
+    cursor: pointer;
+}
+
+.seat.selected {
+    background-color: green;
+}
