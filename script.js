@@ -11,36 +11,49 @@ document.addEventListener("DOMContentLoaded", () => {
     const message = document.getElementById("message");
 
     let ticketPrice = +movie.value;
+    let selectedSeats = [];
 
-    let bookedSeats = JSON.parse(localStorage.getItem("bookedSeats")) || [];
-    let selectedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
+    let allBookings = JSON.parse(localStorage.getItem("allBookings")) || {};
+
+    function getShowKey() {
+        return movie.value + "_" + time.value;
+    }
+
+    function loadSeatsForShow() {
+        const showKey = getShowKey();
+        const bookedSeats = allBookings[showKey] || [];
+
+        seats.forEach(seat => {
+            seat.classList.remove("selected", "occupied");
+
+            if (bookedSeats.includes(seat.dataset.seat)) {
+                seat.classList.add("occupied");
+            }
+        });
+
+        selectedSeats = [];
+        updateSummary();
+    }
 
     seats.forEach(seat => {
-
-        if (bookedSeats.includes(seat.dataset.seat)) {
-            seat.classList.add("occupied");
-        }
-
-        if (
-            selectedSeats.includes(seat.dataset.seat) &&
-            !seat.classList.contains("occupied")
-        ) {
-            seat.classList.add("selected");
-        }
-
         seat.addEventListener("click", () => {
             if (seat.classList.contains("occupied")) return;
 
             seat.classList.toggle("selected");
-            saveSelectedSeats();
+
+            selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
+                .map(seat => seat.dataset.seat);
+
             updateSummary();
         });
     });
 
     movie.addEventListener("change", () => {
         ticketPrice = +movie.value;
-        updateSummary();
+        loadSeatsForShow();
     });
+
+    time.addEventListener("change", loadSeatsForShow);
 
     confirmBtn.addEventListener("click", () => {
 
@@ -49,50 +62,42 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        selectedSeats.forEach(id => {
-            if (!bookedSeats.includes(id)) bookedSeats.push(id);
+        const showKey = getShowKey();
 
-            const seat = document.querySelector(
-                `.theater .seat[data-seat='${id}']`
-            );
-            seat.classList.remove("selected");
-            seat.classList.add("occupied");
+        if (!allBookings[showKey]) {
+            allBookings[showKey] = [];
+        }
+
+        selectedSeats.forEach(seat => {
+            if (!allBookings[showKey].includes(seat)) {
+                allBookings[showKey].push(seat);
+            }
         });
 
-        localStorage.setItem("bookedSeats", JSON.stringify(bookedSeats));
-        localStorage.removeItem("selectedSeats");
+        localStorage.setItem("allBookings", JSON.stringify(allBookings));
 
-        selectedSeats = [];
-        updateSummary();
+        loadSeatsForShow();
 
-        message.innerText = "Booking confirmed.";
+        message.innerText =
+            `Booking confirmed for ${movie.options[movie.selectedIndex].text} at ${time.value}`;
     });
 
     resetBtn.addEventListener("click", () => {
-        if (!confirm("Admin: Clear all bookings?")) return;
 
-        localStorage.clear();
-        seats.forEach(seat => seat.classList.remove("selected", "occupied"));
+        if (!confirm("Admin: Clear ALL bookings for ALL shows?")) return;
 
-        selectedSeats = [];
-        bookedSeats = [];
-        updateSummary();
+        localStorage.removeItem("allBookings");
+        allBookings = {};
+
+        loadSeatsForShow();
+        message.innerText = "All bookings cleared for all shows.";
     });
 
-    function saveSelectedSeats() {
-        selectedSeats = [...document.querySelectorAll(".theater .seat.selected")]
-            .map(seat => seat.dataset.seat);
-        localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
-    }
-
     function updateSummary() {
-        const selected = document.querySelectorAll(".theater .seat.selected");
-        count.innerText = selected.length;
-        total.innerText = selected.length * ticketPrice;
-        seatList.innerText = selected.length
-            ? [...selected].map(s => s.dataset.seat).join(", ")
-            : "None";
+        count.innerText = selectedSeats.length;
+        total.innerText = selectedSeats.length * ticketPrice;
+        seatList.innerText = selectedSeats.length ? selectedSeats.join(", ") : "None";
     }
 
-    updateSummary();
+    loadSeatsForShow();
 });
